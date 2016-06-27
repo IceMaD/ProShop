@@ -1,0 +1,22 @@
+{% extends "@App/layout.html.twig" %}
+
+{% set ng_app = 'proshop.app' %}
+
+{% set title = 'Hello World' %}
+
+{%- block body -%}
+
+    <div ng-controller="LayoutController" ng-cloak layout layout-fill>
+        {%- include '@App/Static/sidenav.html.twig' -%}
+        <md-content layout="column" layout-fill>
+            {%- include '@App/Static/toolbar.html.twig' -%}
+            <md-content flex ui-view layout-fill>
+                Chargement infini en cours ...
+            </md-content>
+        </md-content>
+    </div>
+{%- endblock -%}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/app/javascript/App/app.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "@App/layout.html.twig" %}
+
+{% set ng_app = '' %}
+
+{% set title = 'Hello World' %}
+
+{%- block body -%}
+
+    <h1>Hello</h1>
+
+    <a href="{{ path('app_static_app') }}">Application ?</a>
+
+{%- endblock -%}

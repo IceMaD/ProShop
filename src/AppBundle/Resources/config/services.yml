@@ -1,0 +1,8 @@
+services:
+
+    # Fixtures
+
+    app.faker_provider.password_provider:
+        class: AppBundle\DataFixtures\Faker\Provider\PasswordProvider
+        tags: [ { name: hautelook_alice.faker.provider } ]
+

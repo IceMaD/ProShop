@@ -1,0 +1,15 @@
+AppBundle\Entity\User:
+    template_user (template):
+        username: <userName()>
+        email: <email()>
+        enabled: <boolean()>
+        salt: <salt()>
+        password: <password('password', $salt)>
+
+    user_admin (extends template_user):
+        username: 'admin'
+        email: 'marc.duboc@cifacom.com'
+        enabled: true
+        roles: ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN', 'ROLE_USER']
+
+    user_{1..20} (extends template_user):

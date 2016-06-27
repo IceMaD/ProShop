@@ -1,0 +1,32 @@
+### JetBrains
+
+/.idea
+
+### Node
+
+/node_modules
+
+### Symfony
+
+# Compiled
+
+/src/AppBundle/Resources/public/*
+
+# Cache, session files and logs (Symfony3)
+/var/cache/*
+/var/logs/*
+/var/sessions/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+!var/sessions/.gitkeep
+
+# Parameters
+/app/config/parameters.yml
+
+# Managed by Composer
+/app/bootstrap.php.cache
+/var/bootstrap.php.cache
+/vendor/
+
+# Assets and user uploads
+/web/bundles/
