@@ -57,3 +57,5 @@ And add this line in `/etc/hosts`
 ```bash
 grunt watch
 ```
+
+> To understand what it does, do `grunt symfony:dump:formatted` and see the generated file ;)
