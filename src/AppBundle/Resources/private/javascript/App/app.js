@@ -5,6 +5,9 @@
             'ngMaterial'
         ])
         .config(require('../Config/config'))
+        .config(require('./Config/routing'))
+
+        .service('Router', require('./Service/Router'))
 
         .controller('LayoutController', require('./Controller/LayoutController'))
 })();
