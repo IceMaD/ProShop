@@ -18,4 +18,49 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Wishlist", mappedBy="owner")
+     **/
+    private $wishlists;
+
+    public function __construct()
+    {
+        $this->wishlists = new ArrayCollection();
+    }
+
+
+    /**
+     * Add wishlist
+     *
+     * @param \AppBundle\Entity\Wishlist $wishlist
+     *
+     * @return User
+     */
+    public function addWishlist(\AppBundle\Entity\Wishlist $wishlist)
+    {
+        $this->wishlists[] = $wishlist;
+
+        return $this;
+    }
+
+    /**
+     * Remove wishlist
+     *
+     * @param \AppBundle\Entity\Wishlist $wishlist
+     */
+    public function removeWishlist(\AppBundle\Entity\Wishlist $wishlist)
+    {
+        $this->wishlists->removeElement($wishlist);
+    }
+
+    /**
+     * Get wishlists
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWishlists()
+    {
+        return $this->wishlists;
+    }
 }
