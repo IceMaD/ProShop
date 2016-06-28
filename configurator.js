@@ -251,10 +251,10 @@ module.exports = function(grunt, gruntConfiguration) {
 
                 // Available types
                 var types = {
-                    [SCRIPT]: Array.prototype.push.bind(last_watch.reference.files, ...callback(function(file) {
+                    [SCRIPT]: Array.prototype.push.bind(last_watch.reference.files, callback(function(file) {
                         return path.javascript(bundle, 'private', file)
                     })),
-                    [STYLE]: Array.prototype.push.bind(last_watch.reference.files, ...callback(function(file) {
+                    [STYLE]: Array.prototype.push.bind(last_watch.reference.files, callback(function(file) {
                         return path.scss(bundle, file)
                     }))
                 };
