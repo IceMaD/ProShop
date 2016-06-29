@@ -1,0 +1,21 @@
+.url-form {
+    display: flex;
+    width: 600px;
+    max-width: 100%;
+    align-items: center;
+    box-shadow: 0 0 2rem 0 lightgrey;
+
+    .md-errors-spacer {
+        display: none;
+    }
+
+    input {
+        padding: .5rem;
+        order: 1;
+    }
+
+    button {
+        order: 2;
+        margin: 0;
+    }
+}

@@ -1,0 +1,33 @@
+<div layout layout-padding layout-fill layout-align="center center">
+
+    <div layout="column" layout-align="center center">
+        <h1 class="md-display-2">
+            ProShop
+        </h1>
+
+        <form>
+            <md-input-container class="url-form" md-no-float>
+                <input placeholder="Url" ng-model="url">
+                <md-button class="md-accent md-raised">
+                    <md-icon class="material-icons">search</md-icon>
+                </md-button>
+            </md-input-container>
+        </form>
+
+        <md-menu md-offset="0 64">
+            <md-button ng-click="$mdOpenMenu()">
+                Besoin d'aide ?
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <p>
+                        <strong>Coller</strong> dans le champs ci-dessus l'<strong>url de la page produit</strong>.
+                    </p>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        <md-button>
+        </md-button>
+    </div>
+
+</div>
