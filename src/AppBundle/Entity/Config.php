@@ -2,6 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="config")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ConfigRepository")
+ *
+ * @Entity
+ * @InheritanceType("SINGLE_TABLE")
+ * @DiscriminatorColumn(name="discriminator", type="string", length=255)
+ * @DiscriminatorMap({"config" = "Config", "mainconfig" = "Mainconfig", "wishlistconfig" = "Wishlistconfig"})
  */
 class Config
 {
@@ -21,12 +30,12 @@ class Config
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="discriminator", type="string", length=255)
-     */
-    private $discriminator;
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="discriminator", type="string", length=255)
+    //  */
+    // private $discriminator;
 
     /**
      * @var int
@@ -62,17 +71,6 @@ class Config
      * @ORM\Column(name="brands_type", type="boolean")
      */
     private $brandsType;
-
-    /**
-     * @ORM\OneToOne(targetEntity="Team", cascade={"persist"})
-     */
-    private $team;
-
-    /**
-     * @ORM\OneToOne(targetEntity="Wishlist", cascade={"persist"})
-     */
-    private $wishlist;
-
 
     /**
      * Get id
@@ -275,4 +273,26 @@ class Config
     {
         return $this->wishlist;
     }
+}
+
+/**
+ * @Entity
+ */
+class Wishlistconfig extends Config
+{
+    /**
+     * @ORM\OneToOne(targetEntity="Wishlist", cascade={"persist"})
+     */
+    private $wishlist;
+}
+
+/**
+ * @Entity
+ */
+class Mainconfig extends Config
+{
+    /**
+     * @ORM\OneToOne(targetEntity="Team", cascade={"persist"})
+     */
+    private $team;
 }
