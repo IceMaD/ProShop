@@ -5,7 +5,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity
+ * Link
+ *
+ * @ORM\Table(name="link")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\LinkRepository")
  */
 class Link
 {

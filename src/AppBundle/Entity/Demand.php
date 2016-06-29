@@ -5,7 +5,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity
+ * Demand
+ *
+ * @ORM\Table(name="demand")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DemandRepository")
  */
 class Demand
 {
@@ -33,7 +36,7 @@ class Demand
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255) 
+     * @ORM\Column(type="string", length=255)
      */
     private $finStatus;
 

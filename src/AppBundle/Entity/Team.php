@@ -6,7 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity
+ * Team
+ *
+ * @ORM\Table(name="team")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TeamRepository")
  */
 class Team
 {
