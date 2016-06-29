@@ -39,6 +39,12 @@ class Link
      **/
     private $product;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Supplier", inversedBy="suppliers")
+     * @ORM\JoinColumn(name="supplier_id", referencedColumnName="id")
+     **/
+    private $supplier;
+
 
     /**
      * Get id
@@ -161,5 +167,29 @@ class Link
     public function getProduct()
     {
         return $this->product;
+    }
+
+    /**
+     * Set supplier
+     *
+     * @param \AppBundle\Entity\Supplier $supplier
+     *
+     * @return Link
+     */
+    public function setSupplier(\AppBundle\Entity\Supplier $supplier = null)
+    {
+        $this->supplier = $supplier;
+
+        return $this;
+    }
+
+    /**
+     * Get supplier
+     *
+     * @return \AppBundle\Entity\Supplier
+     */
+    public function getSupplier()
+    {
+        return $this->supplier;
     }
 }

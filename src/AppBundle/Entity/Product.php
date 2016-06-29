@@ -41,6 +41,12 @@ class Product
      **/
     private $purchases;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="brands")
+     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     **/
+    private $brand;
+
 
     /**
      * Get id
@@ -173,5 +179,29 @@ class Product
     public function getPurchases()
     {
         return $this->purchases;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param \AppBundle\Entity\Brand $brand
+     *
+     * @return Product
+     */
+    public function setBrand(\AppBundle\Entity\Brand $brand = null)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return \AppBundle\Entity\Brand
+     */
+    public function getBrand()
+    {
+        return $this->brand;
     }
 }

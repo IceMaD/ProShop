@@ -24,6 +24,12 @@ class User extends BaseUser
      **/
     private $wishlists;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="users")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     **/
+    private $team;
+
     public function __construct()
     {
         $this->wishlists = new ArrayCollection();
@@ -62,5 +68,29 @@ class User extends BaseUser
     public function getWishlists()
     {
         return $this->wishlists;
+    }
+
+    /**
+     * Set team
+     *
+     * @param \AppBundle\Entity\Team $team
+     *
+     * @return User
+     */
+    public function setTeam(\AppBundle\Entity\Team $team = null)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return \AppBundle\Entity\Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
     }
 }

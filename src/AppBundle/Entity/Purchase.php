@@ -41,6 +41,11 @@ class Purchase
      **/
     private $team;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Review", cascade={"persist"})
+     */
+    private $review;
+
 
     /**
      * Get id
@@ -146,5 +151,29 @@ class Purchase
     public function getTeam()
     {
         return $this->team;
+    }
+
+    /**
+     * Set review
+     *
+     * @param \AppBundle\Entity\Review $review
+     *
+     * @return Purchase
+     */
+    public function setReview(\AppBundle\Entity\Review $review = null)
+    {
+        $this->review = $review;
+
+        return $this;
+    }
+
+    /**
+     * Get review
+     *
+     * @return \AppBundle\Entity\Review
+     */
+    public function getReview()
+    {
+        return $this->review;
     }
 }
