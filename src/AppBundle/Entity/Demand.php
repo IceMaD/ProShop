@@ -60,6 +60,12 @@ class Demand
      **/
     private $link;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Wishlist", inversedBy="demands")
+     * @ORM\JoinColumn(name="wishlist_id", referencedColumnName="id")
+     **/
+    private $wishlist;
+
 
     /**
      * Get id
@@ -261,5 +267,29 @@ class Demand
     public function getTime()
     {
         return $this->time;
+    }
+
+    /**
+     * Set wishlist
+     *
+     * @param \AppBundle\Entity\Wishlist $wishlist
+     *
+     * @return Demand
+     */
+    public function setWishlist(\AppBundle\Entity\Wishlist $wishlist = null)
+    {
+        $this->wishlist = $wishlist;
+
+        return $this;
+    }
+
+    /**
+     * Get wishlist
+     *
+     * @return \AppBundle\Entity\Wishlist
+     */
+    public function getWishlist()
+    {
+        return $this->wishlist;
     }
 }

@@ -3,17 +3,32 @@
 {% set ng_app = '' %}
 
 {% set title = 'Hello World' %}
-{% set skip_routing = true %}
 
 {%- block body -%}
 
-    <div style="height: 100vh; width: 100vw; text-align: center;">
-        <a style="display: inline-block; line-height: 100vh;" href="{{ path('app_static_app') }}">
-            {% include '@App/Global/logo.html.twig' %}
-        </a>
-    </div>
+<div style="height: 100vh; width: 100vw; text-align: center;">
+         <a style="display: inline-block; line-height: 100vh;" href="{{ path('app_static_app') }}">
+             {% include '@App/Global/logo.html.twig' %}
+         </a>
+</div>
+   <h1>Liste en attente</h1>
 
-    {% for wishlist in wishlists %}
+  <section id="user-info">
+    <div class="picture">
+      <md-icon class="material-icons">person</md-icon>
+    </div>
+    <p class="user-name">{{ user.username }}</p>
+    <p class="user-job">Co-founder</p>
+    <p class="user-location"><md-icon class="material-icons">place</md-icon> Paris, 75006</p>
+  </section>
+  <section id="current-list" class="lists">
+
+    <h2>Détail des demmandes en attente</h2>
+    <div class="topright">
+      <a href="#" class=""><md-icon class="material-icons">loop</md-icon></a>
+      <a href="#" class=""><md-icon class="material-icons">keyboard_arrow_down</md-icon></a>
+    </div>
+    {% for wishlist in wishlists_attente %}
     <table>
       <thead>
         <tr>
@@ -29,19 +44,104 @@
       <tbody>
         {% for demand in wishlist.demands %}
           <tr>
-            <td></td>
+            <td>{{ loop.index }}</td>
             <td>{{ demand.date|date('Y-m-d') }}</td>
             <td>{{ demand.time|date('H:i:s') }}</td>
-            <td><a href="{{ demand.link.url }}">{{ demand.link.product.model }}</a></td>
+            <td><a href="{{ demand.link.url }}" class="to-product">{{ demand.link.product.model }}</a></td>
             <td>{{ demand.link.supplier.name }}</td>
             <td>{{ demand.link.price }}€</td>
-            <td>{{ wishlist.status }}</td>
+            <td>
+              {% if demand.techStatus == demand.finStatus and demand.techStatus != 'NULL' %}
+                <span href="#" class="md-button btn-list btn-green">Acceptée</span><a href="#" class="md-button btn-go">GO !</a>
+              {% elseif demand.techStatus == 'KO' or demand.finStatus == 'KO' %}
+                <span class="md-button btn-list btn-red">Refusée</span>
+              {% else %}
+                <span class="md-button btn-list btn-yellow">En attente</span>
+              {% endif %}
+            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
     {% endfor %}
 
+    </section>
+    <section id="past-lists" class="lists">
+
+    <h2>Détails des demmandes passées</h2>
+    <div class="topright">
+      <a href="#" class=""><md-icon class="material-icons">loop</md-icon></a>
+      <a href="#" class=""><md-icon class="material-icons">keyboard_arrow_down</md-icon></a>
+    </div>
+    {% for wishlist in wishlists_done %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nº</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Produit</th>
+          <th>Fournisseur</th>
+          <th>Prix</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for demand in wishlist.demands %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ demand.date|date('Y-m-d') }}</td>
+            <td>{{ demand.time|date('H:i:s') }}</td>
+            <td><a href="{{ demand.link.url }}" class="to-product">{{ demand.link.product.model }}</a></td>
+            <td>{{ demand.link.supplier.name }}</td>
+            <td>{{ demand.link.price }}€</td>
+            <td>
+              {% if demand.techStatus == demand.finStatus %}
+                <span class="md-button btn-list btn-green">Acceptée</span>
+              {% elseif demand.techStatus == 'KO' or demand.finStatus == 'KO' %}
+                <span class="md-button btn-list btn-red">Refusée</span>
+              {% else %}
+                <span class="md-button btn-list btn-yellow">En attente</span>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endfor %}
+
+    </section>
+    <section id="team-lists" class="lists">
+    <h2>Listes des demandes en attente</h2>
+    <div class="topright">
+      <a href="#" class=""><md-icon class="material-icons">loop</md-icon></a>
+      <a href="#" class=""><md-icon class="material-icons">keyboard_arrow_down</md-icon></a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Prénom</th>
+          <th>Date</th>
+          <th>Nb. produits</th>
+          <th>Fournisseur</th>
+          <th>Prix</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for wishlist in team_wishlists %}
+          <tr>
+            <td>{{ team_members[wishlist.owner.id].username }}</td>
+            <td>{{ wishlist.date|date('Y-m-d')}}</td>
+            <td>{{ wishlist.demands|length }}</td>
+            <td>{{ wishlist.demands[0].link.supplier.name }}</td>
+            <td>{{ wishlist.demands[0].link.price }}€</td>
+            <td>{{ wishlist.status }}</td>
+          </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+</section>
 
 
 

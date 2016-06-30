@@ -1,0 +1,12 @@
+AppBundle\Entity\Link:
+    Link_MacbookPro:
+        product: @Product_MacbookPro
+        supplier: @Supplier_Amazon
+        url: 'https://www.amazon.fr/Apple-MacBook-Retina-Graphics-Yosemite/dp/B00UKRUYNQ/ref=sr_1_1?ie=UTF8&qid=1467196153&sr=8-1&keywords=macbook+pro+13'
+        price: 1449.42
+
+    Link_Asus:
+        product: @Product_Asus
+        supplier: @Supplier_LDLC
+        url: 'http://www.ldlc.com/fiche/PB00207904.html'
+        price: 449.95

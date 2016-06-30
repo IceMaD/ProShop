@@ -1,0 +1,6 @@
+AppBundle\Entity\Supplier:
+    Supplier_Amazon:
+        name: 'Amazon'
+
+    Supplier_LDLC:
+        name: 'LDLC'

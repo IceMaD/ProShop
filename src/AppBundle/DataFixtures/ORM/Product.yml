@@ -1,0 +1,10 @@
+AppBundle\Entity\Product:
+    Product_MacbookPro:
+        model: 'Macbook Pro 13'
+        description: 'Product description'
+        brand: @Brand_Apple
+
+    Product_Asus:
+        model: 'ASUS A540LA-XX016T'
+        description: 'Product description'
+        brand: @Brand_Asus

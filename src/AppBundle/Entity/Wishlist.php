@@ -35,8 +35,8 @@ class Wishlist
     private $owner;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Demand", cascade={"persist"})
-     */
+     * @ORM\OneToMany(targetEntity="Demand", mappedBy="wishlist")
+     **/
     private $demands;
 
 

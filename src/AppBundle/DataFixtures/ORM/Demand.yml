@@ -1,0 +1,18 @@
+AppBundle\Entity\Demand:
+    Demand_Attente:
+        status: 'ok'
+        techStatus: 'ok'
+        finStatus: 'ok'
+        date: '2016-06-29'
+        time: '11:27:09'
+        link: @Link_MacbookPro
+        wishlist: @Wishlist_Attente
+
+    Demand_Traitee:
+        status: 'ok'
+        techStatus: 'ok'
+        finStatus: 'ok'
+        date: '2016-06-06'
+        time: '15:47:32'
+        link: @Link_Asus
+        wishlist: @Wishlist_Traitee

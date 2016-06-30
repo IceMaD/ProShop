@@ -1,0 +1,6 @@
+AppBundle\Entity\Brand:
+    Brand_Apple:
+        name: 'Apple'
+
+    Brand_Asus:
+        name: 'ASUS'

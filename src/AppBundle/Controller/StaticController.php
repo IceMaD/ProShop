@@ -24,14 +24,20 @@ class StaticController extends Controller
       //get user Id
       $userId = $this->getUser()->getId();
       //get user's wishlists
-      $wishlists = $em->getRepository('AppBundle:Wishlist')->findByOwner($userId);
+      $wishlists_attente = $em->getRepository('AppBundle:Wishlist')->findBy(
+        array('owner'=>$userId,'status'=>'En attente')
+      );
+      $wishlists_done = $em->getRepository('AppBundle:Wishlist')->findBy(
+        array('owner'=>$userId,'status'=>'Traitée')
+      );
       //get wishlist's demands
 
       //Fetch
 
       return array(
           'user' => $userId,
-          'wishlists' => $wishlists,
+          'wishlists_attente' => $wishlists_attente,
+          'wishlists_done' => $wishlists_done,
       );
     }
 
