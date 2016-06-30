@@ -30,14 +30,28 @@ class StaticController extends Controller
       $wishlists_done = $em->getRepository('AppBundle:Wishlist')->findBy(
         array('owner'=>$userId,'status'=>'Traitée')
       );
-      //get wishlist's demands
 
-      //Fetch
+
+      //Fetch team's wishlists
+      $members = $this->get('fos_user.user_manager')->findUsers();
+      //->findBy($this->getUser()->getTeam());
+      $team_members = array();
+      $team_wishlists = array();
+      foreach ($members as $member) {
+        if ( $member->getTeam() == $this->getUser()->getTeam() ) {
+          array_push($team_wishlists,$em->getRepository('AppBundle:Wishlist')->findBy(array('owner'=>$member->getId(),'status'=>'En attente'))[0]);
+          $team_members[$member->getId()]=$member;
+        }
+      }
+
+
 
       return array(
           'user' => $userId,
           'wishlists_attente' => $wishlists_attente,
           'wishlists_done' => $wishlists_done,
+          'team_wishlists' => $team_wishlists,
+          'team_members' => $team_members,
       );
     }
 
