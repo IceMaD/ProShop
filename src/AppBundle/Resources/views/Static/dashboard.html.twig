@@ -1,0 +1,174 @@
+{% extends "@App/layout.html.twig" %}
+
+{% set ng_app = '' %}
+
+{% set title = 'Hello World' %}
+
+{%- block body -%}
+
+<header>
+  <a href="#" class="go-home"><img src="{{ asset('bundles/app/images/logo.png') }}" alt="" /></a>
+</header>
+
+  <section id="user-info">
+    <div class="picture">
+      <md-icon class="material-icons">person</md-icon>
+    </div>
+    <p class="user-name">{{ user.username }}</p>
+    <p class="user-job">Co-founder</p>
+    <p class="user-location"><md-icon class="material-icons">place</md-icon> Paris, 75006</p>
+  </section>
+  <section id="current-list" class="lists">
+
+    <h2>Détail des demmandes en attente</h2>
+    <div class="topright">
+      <a href="#" class=""><md-icon class="material-icons">loop</md-icon></a>
+      <a href="#" class="toggleList"><md-icon class="material-icons">keyboard_arrow_down</md-icon></a>
+    </div>
+    {% for wishlist in wishlists_attente %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nº</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Produit</th>
+          <th>Fournisseur</th>
+          <th>Prix</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for demand in wishlist.demands %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ demand.date|date('Y-m-d') }}</td>
+            <td>{{ demand.time|date('H:i:s') }}</td>
+            <td><a href="{{ demand.link.url }}" class="to-product">{{ demand.link.product.model }}</a></td>
+            <td>{{ demand.link.supplier.name }}</td>
+            <td>{{ demand.link.price }}€</td>
+            <td>
+              {% if demand.techStatus == demand.finStatus and demand.techStatus != 'NULL' %}
+                <span href="#" class="md-button btn-list btn-green">Acceptée</span><a href="#" class="md-button btn-go">GO !</a>
+              {% elseif demand.techStatus == 'KO' or demand.finStatus == 'KO' %}
+                <span class="md-button btn-list btn-red">Refusée</span>
+              {% else %}
+                <span class="md-button btn-list btn-yellow">En attente</span>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endfor %}
+
+    </section>
+    <section id="past-lists" class="lists">
+
+    <h2>Détails des demmandes passées</h2>
+    <div class="topright">
+      <a href="#" class=""><md-icon class="material-icons">loop</md-icon></a>
+      <a href="#" class="toggleList"><md-icon class="material-icons">keyboard_arrow_down</md-icon></a>
+    </div>
+    {% for wishlist in wishlists_done %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nº</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Produit</th>
+          <th>Fournisseur</th>
+          <th>Prix</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for demand in wishlist.demands %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ demand.date|date('Y-m-d') }}</td>
+            <td>{{ demand.time|date('H:i:s') }}</td>
+            <td><a href="{{ demand.link.url }}" class="to-product">{{ demand.link.product.model }}</a></td>
+            <td>{{ demand.link.supplier.name }}</td>
+            <td>{{ demand.link.price }}€</td>
+            <td>
+              {% if demand.techStatus == demand.finStatus %}
+                <span class="md-button btn-list btn-green">Acceptée</span>
+              {% elseif demand.techStatus == 'KO' or demand.finStatus == 'KO' %}
+                <span class="md-button btn-list btn-red">Refusée</span>
+              {% else %}
+                <span class="md-button btn-list btn-yellow">En attente</span>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endfor %}
+
+    </section>
+    <section id="team-lists" class="lists">
+    <h2>Listes des demandes en attente</h2>
+    <div class="topright">
+      <a href="#" class=""><md-icon class="material-icons">loop</md-icon></a>
+      <a href="#" class="toggleList"><md-icon class="material-icons">keyboard_arrow_down</md-icon></a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Prénom</th>
+          <th>Date</th>
+          <th>Nb. produits</th>
+          <th>Fournisseur</th>
+          <th>Prix</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for wishlist in team_wishlists %}
+          <tr>
+            <td>{{ team_members[wishlist.owner.id].username }}</td>
+            <td>{{ wishlist.date|date('Y-m-d')}}</td>
+            <td>{{ wishlist.demands|length }}</td>
+            <td>{{ wishlist.demands[0].link.supplier.name }}</td>
+            <td>{{ wishlist.demands[0].link.price }}€</td>
+            <td>{{ wishlist.status }}</td>
+          </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+</section>
+
+<script type="text/javascript">
+var tags = ['h2'];
+
+function toggleClass(element, className){
+    if (!element || !className){
+        return;
+    }
+
+    var classString = element.className, nameIndex = classString.indexOf(className);
+    if (nameIndex == -1) {
+        classString += ' ' + className;
+    }
+    else {
+        classString = classString.substr(0, nameIndex) + classString.substr(nameIndex+className.length);
+    }
+    element.className = classString;
+}
+
+for( var i in tags ){
+  var these = document.getElementsByTagName(tags[i]);
+  if( these.length ){
+      for( var n=0,m=these.length;n<m;n++ ){
+        these[n].addEventListener('click',function(){
+          toggleClass(this.parentElement,'open')
+        },false);
+      }
+  }
+}
+</script>
+
+
+{%- endblock -%}
