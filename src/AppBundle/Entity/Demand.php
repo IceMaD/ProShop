@@ -41,6 +41,20 @@ class Demand
     private $finStatus;
 
     /**
+     * @var date
+     *
+     * @ORM\Column(type="date")
+     */
+    private $date;
+
+    /**
+     * @var time
+     *
+     * @ORM\Column(type="time")
+     */
+    private $time;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Link", inversedBy="demands")
      * @ORM\JoinColumn(name="link_id", referencedColumnName="id")
      **/
@@ -199,5 +213,53 @@ class Demand
     public function getFinStatus()
     {
         return $this->finStatus;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Demand
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set time
+     *
+     * @param \DateTime $time
+     *
+     * @return Demand
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+
+        return $this;
+    }
+
+    /**
+     * Get time
+     *
+     * @return \DateTime
+     */
+    public function getTime()
+    {
+        return $this->time;
     }
 }

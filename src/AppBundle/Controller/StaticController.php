@@ -17,6 +17,22 @@ class StaticController extends Controller
      */
     public function indexAction(Request $request)
     {
+      //Fetch Wishlist
+      //get user
+      //get wishlists by user ID
+      $em = $this->getDoctrine()->getManager();
+      //get user Id
+      $userId = $this->getUser()->getId();
+      //get user's wishlists
+      $wishlists = $em->getRepository('AppBundle:Wishlist')->findByOwner($userId);
+      //get wishlist's demands
+
+      //Fetch
+
+      return array(
+          'user' => $userId,
+          'wishlists' => $wishlists,
+      );
     }
 
     /**

@@ -13,4 +13,36 @@
         </a>
     </div>
 
+    {% for wishlist in wishlists %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nº</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Produit</th>
+          <th>Fournisseur</th>
+          <th>Prix</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for demand in wishlist.demands %}
+          <tr>
+            <td></td>
+            <td>{{ demand.date|date('Y-m-d') }}</td>
+            <td>{{ demand.time|date('H:i:s') }}</td>
+            <td><a href="{{ demand.link.url }}">{{ demand.link.product.model }}</a></td>
+            <td>{{ demand.link.supplier.name }}</td>
+            <td>{{ demand.link.price }}€</td>
+            <td>{{ wishlist.status }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endfor %}
+
+
+
+
 {%- endblock -%}
