@@ -3,11 +3,14 @@
 {% set ng_app = '' %}
 
 {% set title = 'Hello World' %}
+{% set skip_routing = true %}
 
 {%- block body -%}
 
-    {% include '@App/Global/logo.html.twig' %}
-
-    <a href="{{ path('app_static_app') }}">Application</a>
+    <div style="height: 100vh; width: 100vw; text-align: center;">
+        <a style="display: inline-block; line-height: 100vh;" href="{{ path('app_static_app') }}">
+            {% include '@App/Global/logo.html.twig' %}
+        </a>
+    </div>
 
 {%- endblock -%}
