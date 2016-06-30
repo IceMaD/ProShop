@@ -1,0 +1,137 @@
+html{
+  font-size: 62.5%;
+  font-family: 'Open Sans', sans-serif;
+}
+body {
+    background-color: white;
+    font-size: 1.4rem;
+}
+.btn-list{
+  color:white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin:0;
+  cursor: default;
+  line-height: 26px;
+    min-height: 26px;
+}
+.btn-go{
+  color:#8f8f8f;
+  background-color: #e0e0e0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin:0;
+  margin-left:10px;
+  line-height: 26px;
+    min-height: 26px;
+  &:hover{
+    color:#484848;
+  }
+}
+.btn-yellow{
+  background-color:#f0ad4e;
+}
+.btn-red{
+  background-color:#d9534f;
+}
+.btn-green{
+  background-color:#5cb85c;
+}
+#user-info{
+  width:1300px;
+  margin:50px auto;
+  padding:0px;
+  position: relative;
+  .picture{
+    width:150px;
+    height:150px;
+    margin:0 auto;
+    margin-bottom: 25px;
+    border-radius: 75px;
+    background-color: #f0f0f0;
+    text-align: center;
+    position: relative;
+    md-icon{
+      font-size: 10rem;
+      color:white;
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      -webkit-transform:translate(-50%,-50%);
+    }
+  }
+  p{
+    color:#8f8f8f;
+    text-align: center;
+    margin:10px;
+    &.user-name{
+      color:#484848;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    &.user-job, &.user-location{
+      font-size: 1.4rem;
+    }
+  }
+}
+.lists{
+  position:relative;
+  max-width: 1300px;
+  margin:50px auto;
+  padding:30px 0 40px 0;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+  color:#484848;
+
+  h2{
+    text-transform: uppercase;
+    margin-top:0;
+    margin-bottom: 45px;
+    padding:0 35px;
+    font-size:1.8rem;
+    font-weight: 700;
+  }
+
+  .topright{
+    position:absolute;
+    top:30px;
+    right:35px;
+
+    a{
+      color:#484848;
+      font-size: 1.2rem;
+    }
+  }
+
+  .to-product{
+    color:#8f8f8f;
+    text-decoration: none;
+    &:hover{
+      color:#484848;
+    }
+  }
+
+  table{
+    width:100%;
+    border-bottom:1px solid #f0f0f0;
+    border-collapse: collapse;
+    th,td{
+      padding:10px 35px;
+      box-sizing: border-box;
+      height:60px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    tr{
+      td{
+        border-top:1px solid #f0f0f0;
+        color:#8f8f8f
+      }
+      &:hover{
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+        -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+      }
+    }
+  }
+}

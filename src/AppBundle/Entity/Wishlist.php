@@ -22,6 +22,13 @@ class Wishlist
     private $id;
 
     /**
+     * @var date
+     *
+     * @ORM\Column(type="date")
+     */
+    private $date;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string", length=255)
@@ -161,5 +168,29 @@ class Wishlist
     public function getDemands()
     {
         return $this->demands;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Wishlist
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }

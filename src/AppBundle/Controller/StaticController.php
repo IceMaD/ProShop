@@ -22,7 +22,8 @@ class StaticController extends Controller
       //get wishlists by user ID
       $em = $this->getDoctrine()->getManager();
       //get user Id
-      $userId = $this->getUser()->getId();
+      $user = $this->getUser();
+      $userId = $user->getId();
       //get user's wishlists
       $wishlists_attente = $em->getRepository('AppBundle:Wishlist')->findBy(
         array('owner'=>$userId,'status'=>'En attente')
@@ -47,7 +48,7 @@ class StaticController extends Controller
 
 
       return array(
-          'user' => $userId,
+          'user' => $user,
           'wishlists_attente' => $wishlists_attente,
           'wishlists_done' => $wishlists_done,
           'team_wishlists' => $team_wishlists,

@@ -1,8 +1,10 @@
 AppBundle\Entity\Wishlist:
     Wishlist_Attente:
         owner: @user_admin
+        date: '2016-06-29'
         status: 'En attente'
 
     Wishlist_Traitee:
         owner: @user_admin
+        date: '2016-06-06'
         status: 'Traitée'
