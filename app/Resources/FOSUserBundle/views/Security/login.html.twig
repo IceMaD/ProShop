@@ -1,0 +1,58 @@
+{% extends "@App/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% set title = 'Hello World' %}
+{% set skip_routing = true %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/app.min.css') }}">
+{% endblock %}
+
+{% set ng_app = 'proshop.login' %}
+
+{% block body %}
+
+    <md-content layout="column" layout-fill layout-padding layout-align="center center">
+        {% include '@App/Global/logo.html.twig' %}
+
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form action="{{ path("fos_user_security_check") }}" method="post" style="width: 500px">
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            <md-input-container class="md-block">
+                <input placeholder="{{ 'security.login.username'|trans }}"
+                       type="text" id="username" name="_username"
+                       value="{{ last_username }}"
+                       required="required" />
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <input placeholder="{{ 'security.login.password'|trans }}"
+                       type="text" id="password" name="_password"
+                       required="required" />
+            </md-input-container>
+
+            <md-checkbox name="_remember_me" value="on">
+                <span style="color: rgba(0, 0, 0, 0.38);">
+                    {{ 'security.login.remember_me'|trans }}
+                </span>
+            </md-checkbox>
+
+            <div layout layout-align="center">
+                <md-button type="submit" class="md-accent md-raised">
+                    {{ 'security.login.submit'|trans }}
+                </md-button>
+            </div>
+        </form>
+
+    </md-content>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/app/javascript/Login/login.js') }}"></script>
+{% endblock %}

@@ -9,7 +9,7 @@
     <md-content layout-padding layout>
 
         <div>
-            <img src="{[ product.image ]}" alt="">
+            <img width="200" src="{[ product.image ]}" alt="">
         </div>
 
         <div>
@@ -30,5 +30,11 @@
         </div>
 
     </md-content>
+
+    <div layout layout-align="end">
+        <md-button ng-click="cancel()">
+            Continuer
+        </md-button>
+    </div>
 
 </md-dialog>

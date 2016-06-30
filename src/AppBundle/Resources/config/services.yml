@@ -1,3 +1,27 @@
+parameters:
+    web_crawler_configuration:
+        www.ldlc-pro.com:
+            supplier: 'LDLC pro'
+            title: '//*[@id="fiche"]/div[1]/span[1]'
+            reference: '//*[@id="fiche"]/div[1]/span[2]/span'
+            price: '//*[@id="fiche"]/div[1]/div/div[3]/span[1]/text()[1]'
+            brand: '//*[@id="productDetail"]/ul/li[3]/span[2]/u/a'
+            image: '//*[@id="zoomProduct"]/img'
+        www.rueducommerce.fr:
+            supplier: 'Rue du commerce'
+            title: '//*[@class="MarqueProduit"]'
+            reference: '//*[@itemprop="sku"]'
+            price: '//*[@itemprop="price"]'
+            brand: '//*[@class="ficheProduit_titrePopup"]//*[@itemprop="brand"]'
+            image: '//*[@itemprop="image"]'
+        www.materiel.net:
+            supplier: 'Materiel.net'
+            title: '//*[@itemprop="name"]'
+            reference: null
+            price: '//*[@itemprop="price"]'
+            brand: '//*[@id="ProdSectionDesc"]//tr[2]/td[2]'
+            image: '//*[@itemprop="image"]/img'
+
 services:
 
     # Fixtures
@@ -5,4 +29,11 @@ services:
     app.faker_provider.password_provider:
         class: AppBundle\DataFixtures\Faker\Provider\PasswordProvider
         tags: [ { name: hautelook_alice.faker.provider } ]
+
+    # Services
+
+    app.service.web_crawler:
+        class: AppBundle\Service\WebCrawler
+        arguments:
+            - '%web_crawler_configuration%'
 

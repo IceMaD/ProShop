@@ -11,11 +11,6 @@ module.exports = ['stateHelperProvider', '$urlRouterProvider', 'RouterProvider',
             url: '/',
             templateUrl: Router.state('Home'),
             controller: require('../Controller/HomeController')
-        })
-        .state({
-            name: 'Another',
-            url: '/',
-            templateUrl: Router.state('Another')
         });
 
     /**

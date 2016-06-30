@@ -44,6 +44,9 @@ module.exports = function(grunt) {
             .script('App/app').addWatch((path) => [
                 // When src/AppBundle/Resources/private/javascript/App/**/* changes
                 path('App/**/*'),
+            ])
+            .script('Login/login').addWatch((path) => [
+                path('Login/**/*'),
             ]);
     });
     // When changing this configuration, do

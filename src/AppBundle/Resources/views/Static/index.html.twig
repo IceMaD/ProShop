@@ -6,8 +6,8 @@
 
 {%- block body -%}
 
-    <h1>Hello</h1>
+    {% include '@App/Global/logo.html.twig' %}
 
-    <a href="{{ path('app_static_app') }}">Application ?</a>
+    <a href="{{ path('app_static_app') }}">Application</a>
 
 {%- endblock -%}

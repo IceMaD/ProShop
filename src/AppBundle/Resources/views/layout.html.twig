@@ -30,8 +30,10 @@
 <script src="{{ asset('node_modules/angular-material/angular-material.js') }}"></script>
 <script src="{{ asset('node_modules/underscore/underscore-min.js') }}"></script>
 
-<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+{% if skip_routing is not defined or not skip_routing %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+{% endif %}
 
 {% block javascripts %}{% endblock %}
 </body>
